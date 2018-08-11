@@ -15,6 +15,9 @@ class HogwartsMember:
     def school_headmaster():
         return HogwartsMember('Albus Percival Wulfric Brian Dumbledore', 1881, 'male')
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self._name}, birthyear: {self.birthyear})"
+
 
 class Pupil(HogwartsMember):
     """
@@ -55,6 +58,10 @@ class Pupil(HogwartsMember):
     def hermione(cls):
         return cls('Hermione', 1979, 'female', 'Griffindor', 1991, ('Crookshanks', 'cat'))
 
+    def __repr__(self):
+        return (f"{self.__class__.__name__}"
+                f"({self._name}, birthyear: {self.birthyear}, house: {self.house})")
+
 
 class Professor(HogwartsMember):
     """
@@ -74,6 +81,11 @@ class Professor(HogwartsMember):
     def snape(cls):
         return cls('Severus Snape', 1960, 'male', 'Potions', 'Slytherin')
 
+    @property
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self._name}, "
+                f"birthyear: {self.birthyear}, subject: {self.subject})")
+
 class Ghost(HogwartsMember):
     """
     Creates a Hogwarts Ghost
@@ -85,6 +97,10 @@ class Ghost(HogwartsMember):
 
         if house is not None:
             self.house = house
+
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self._name}, "
+                f"birthyear: {self.birthyear}, year of death: {self.year_of_death})")
 
 
 if __name__ == "__main__":
