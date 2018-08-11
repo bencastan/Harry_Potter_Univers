@@ -11,6 +11,10 @@ class HogwartsMember:
     def says(self, words):
         return f"{self._name} says {words}"
 
+    @staticmethod
+    def school_headmaster():
+        return HogwartsMember('Albus Percival Wulfric Brian Dumbledore', 1881, 'male')
+
 
 class Pupil(HogwartsMember):
     """
@@ -39,6 +43,19 @@ class Pupil(HogwartsMember):
             'Transformations': False
         }
 
+    @classmethod
+    def harry(cls):
+        return cls('Harry James Potter', 1980, 'male', 'Griffindor', 1991, ('Hedwig', 'owl'))
+
+    @classmethod
+    def ron(cls):
+        return cls('Ronald Bilius Weasley', 1980, 'male', 'Griffindor', 1991, ('Pigwidgeon', 'owl'))
+
+    @classmethod
+    def hermione(cls):
+        return cls('Hermione', 1979, 'female', 'Griffindor', 1991, ('Crookshanks', 'cat'))
+
+
 class Professor(HogwartsMember):
     """
     Creates a Hogwarts Professor
@@ -49,6 +66,13 @@ class Professor(HogwartsMember):
         self.subject = subject
         self.house = house
 
+    @classmethod
+    def mcgonagall(cls):
+        return cls('Minerva McGonagall', 1935, 'female', 'Transfiguration', 'Griffindor')
+
+    @classmethod
+    def snape(cls):
+        return cls('Severus Snape', 1960, 'male', 'Potions', 'Slytherin')
 
 class Ghost(HogwartsMember):
     """
@@ -64,12 +88,13 @@ class Ghost(HogwartsMember):
 
 
 if __name__ == "__main__":
-    hagrid = HogwartsMember('Rubeus Hagrid', '1928', 'male')
-    print(hagrid.says("Hello!"))
 
-    harry = Pupil(name='Harry James Potter',
-                  birthyear=1980,
-                  sex='male',
-                  house='Griffindor',
-                  start_year=1991,
-                  pet=('Hedwig', 'owl'))
+    hagrid = HogwartsMember(name='Rubeus Hagrid', birthyear=1928,sex='male')
+    harry = Pupil(name='Harry James Potter', birthyear=1980, house='Griffindor', start_year=1991, sex='male')
+    headmaster = harry.school_headmaster()
+
+    mcgonagall = Professor.mcgonagall()
+    snape = Professor.snape()
+    harry = Pupil.harry()
+    ron = Pupil.ron()
+    hermione = Pupil.hermione()
