@@ -86,6 +86,7 @@ class Professor(HogwartsMember):
         return (f"{self.__class__.__name__}({self._name}, "
                 f"birthyear: {self.birthyear}, subject: {self.subject})")
 
+
 class Ghost(HogwartsMember):
     """
     Creates a Hogwarts Ghost
