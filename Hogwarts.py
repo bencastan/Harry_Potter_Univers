@@ -3,7 +3,7 @@ class HogwartsMember:
     Creates a member of the Hogwarts School of Witchcraft and Wizardry
     """
 
-    def __init__(self, name, birthyear, sex):
+    def __init__(self, name: str, birthyear: int, sex: str):
         self._name = name
         self.birthyear = birthyear
         self.sex = sex
@@ -24,7 +24,7 @@ class Pupil(HogwartsMember):
     Create a Hogwarts Pupil
     """
 
-    def __init__(self, name, birthyear, sex, house, start_year, pet=None):
+    def __init__(self, name: str, birthyear: int, sex: str, house: str, start_year: int, pet=None):
         super().__init__(name, birthyear, sex)
         self.house = house
         self.start_year = start_year
@@ -45,6 +45,30 @@ class Pupil(HogwartsMember):
             'Potions': False,
             'Transformations': False
         }
+
+    @staticmethod
+    def passed(grade):
+        """
+        Give a grade, determine if an exam was passed
+        :param grade:
+        :return:
+        """
+        grades = {
+            'O': True,
+            'Ordinary': True,
+            'P' : True,
+            'Passed': True,
+            'A': True,
+            'Acceptable': True,
+            'P': False,
+            'Poor': False,
+            'D': False,
+            'Dreadful': False,
+            'T': False,
+            'Troll': False,
+        }
+
+        return grades.get(grade, False)
 
     @classmethod
     def harry(cls):
@@ -68,7 +92,7 @@ class Professor(HogwartsMember):
     Creates a Hogwarts Professor
     """
 
-    def __init__(self, name, birthyear, sex, subject, house=None):
+    def __init__(self, name: str, birthyear: int, sex: str, subject: str, house=None):
         super().__init__(name, birthyear, sex)
         self.subject = subject
         self.house = house
@@ -92,7 +116,7 @@ class Ghost(HogwartsMember):
     Creates a Hogwarts Ghost
     """
 
-    def __init__(self, name, birthyear, sex, year_of_death, house=None):
+    def __init__(self, name:str, birthyear: int, sex: str, year_of_death: int, house=None):
         super().__init__(name, birthyear, sex)
         self.year_of_death = year_of_death
 
