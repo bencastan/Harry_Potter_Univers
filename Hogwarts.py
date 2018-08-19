@@ -1,3 +1,6 @@
+import datetime
+
+
 class HogwartsMember:
     """
     Creates a member of the Hogwarts School of Witchcraft and Wizardry
@@ -15,6 +18,11 @@ class HogwartsMember:
     def school_headmaster():
         return HogwartsMember('Albus Percival Wulfric Brian Dumbledore', 1881, 'male')
 
+    @property
+    def age(self):
+        now = datetime.datetime.now().year
+        return now - self.birthyear
+
     def __repr__(self):
         return f"{self.__class__.__name__}({self._name}, birthyear: {self.birthyear})"
 
@@ -24,7 +32,7 @@ class Pupil(HogwartsMember):
     Create a Hogwarts Pupil
     """
 
-    def __init__(self, name: str, birthyear: int, sex: str, house: str, start_year: int, pet=None):
+    def __init__(self, name: str, birthyear: int, sex: str, house: str, start_year: int, pet: tuple=None):
         super().__init__(name, birthyear, sex)
         self.house = house
         self.start_year = start_year
@@ -45,6 +53,32 @@ class Pupil(HogwartsMember):
             'Potions': False,
             'Transformations': False
         }
+
+    @property
+    def owls(self):
+        return self._owls
+
+    @owls.setter
+    def owls(self, subject_and_grade):
+
+        try:
+            subject, grade = subject_and_grade
+        except ValueError:
+            raise ValueError("Pass an interable with two items: subject and grade")
+
+        passwd = self.passed(grade)
+
+        if passed:
+            self.owls[subject] = True
+        else:
+            print("The exam was not passed so no OWL was awarded!")
+
+    @owls.deleter
+    def owls(self):
+        print("caution, you are deleting this students' OWL's! "
+              "you should only do that if she / he dropped out of school without passing any exam!")
+        del self._owls
+
 
     @staticmethod
     def passed(grade):
@@ -131,6 +165,7 @@ class Ghost(HogwartsMember):
 if __name__ == "__main__":
 
     hagrid = HogwartsMember(name='Rubeus Hagrid', birthyear=1928,sex='male')
+    print(hagrid.age)
     harry = Pupil(name='Harry James Potter', birthyear=1980, house='Griffindor', start_year=1991, sex='male')
     headmaster = harry.school_headmaster()
 
